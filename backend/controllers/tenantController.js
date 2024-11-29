@@ -1,3 +1,4 @@
+const mongoose = require('mongoose'); // Importa mongoose
 const Tenant = require('../models/tenantModel'); // Importa o modelo de inquilino
 
 // Criar um novo inquilino
@@ -40,16 +41,31 @@ const getTenantById = async (req, res) => {
 
 // Atualizar inquilino
 const updateTenant = async (req, res) => {
-  const { id } = req.params;
+  const { cpf } = req.body;  // Extrai o CPF dos dados enviados no corpo da requisição
+
+  // Verificar se o CPF foi fornecido
+  if (!cpf) {
+    return res.status(400).json({ message: "O CPF do inquilino é obrigatório." });
+  }
+
   try {
-    const tenant = await Tenant.findByIdAndUpdate(id, req.body, { new: true });
-    if (!tenant) {
-      return res.status(404).json({ msg: 'Inquilino não encontrado' });
+    // Buscar o inquilino pelo CPF
+    const updatedTenant = await Tenant.findOneAndUpdate(
+      { cpf: cpf },  // Busca o inquilino pelo CPF
+      req.body,       // Dados para atualização
+      { new: true }   // Retorna o inquilino atualizado
+    );
+
+    // Se não encontrar um inquilino com esse CPF, retorna erro
+    if (!updatedTenant) {
+      return res.status(404).json({ message: "Inquilino não encontrado com esse CPF." });
     }
-    res.status(200).json({ msg: 'Inquilino atualizado com sucesso', tenant });
-  } catch (err) {
-    console.error('Erro ao atualizar inquilino:', err);
-    res.status(500).json({ msg: 'Erro ao atualizar inquilino', error: err.message });
+
+    // Retorna o inquilino atualizado
+    res.status(200).json(updatedTenant);
+  } catch (error) {
+    console.error("Erro ao atualizar inquilino:", error);
+    res.status(500).json({ message: "Erro ao atualizar inquilino", error: error.message });
   }
 };
 

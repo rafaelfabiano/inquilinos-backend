@@ -9,4 +9,13 @@ const tenantSchema = new mongoose.Schema({
   rentValue: { type: Number, required: true },
 }, { timestamps: true });
 
+// Middleware "pre-save" para garantir que o rentValue seja um número válido
+tenantSchema.pre('save', function (next) {
+  if (this.rentValue && typeof this.rentValue === 'string') {
+    // Substitui a vírgula por ponto, caso o valor tenha sido passado com vírgula
+    this.rentValue = parseFloat(this.rentValue.replace(',', '.'));
+  }
+  next();
+});
+
 module.exports = mongoose.model('Tenant', tenantSchema);

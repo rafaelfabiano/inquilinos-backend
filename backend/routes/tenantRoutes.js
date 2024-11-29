@@ -6,7 +6,7 @@ const tenantController = require('../controllers/tenantController');
 router.post('/', tenantController.createTenant); // Criar um novo inquilino
 router.get('/', tenantController.getAllTenants); // Listar todos os inquilinos
 router.get('/:id', tenantController.getTenantById); // Obter inquilino pelo ID
-router.put('/:id', tenantController.updateTenant); // Atualizar inquilino
+router.put('/', tenantController.updateTenant); // Atualizar inquilino (agora por CPF)
 router.delete('/:id', tenantController.deleteTenant); // Excluir inquilino
 
 module.exports = router;
