@@ -13,8 +13,8 @@ RUN npm install
 # Copiar o restante do código (todos os arquivos e pastas) para dentro do contêiner
 COPY . .
 
-# Expor a porta em que o app estará rodando (ajuste se necessário)
-EXPOSE 3000
+# Expor a porta em que o app estará rodando 
+EXPOSE 5000
 
 # Definir o comando para rodar a aplicação
 CMD ["npm", "start"]
