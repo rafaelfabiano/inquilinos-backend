@@ -8,8 +8,7 @@ O projeto **inquilinos-backend** é uma aplicação backend desenvolvida para ge
 ## Funcionalidades
 
 - Cadastro de inquilinos
-- Gerenciamento de propriedades
-- Associação de inquilinos a propriedades
+- Cadastro de Usuarios
 - Autenticação e autorização de usuários
 - Validação de dados de entrada
 - Logs de atividades
