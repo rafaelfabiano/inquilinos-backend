@@ -1,5 +1,3 @@
-# aplicação disponível para testes em:
-https://beanalytic.rafaelfabiano.com.br/
 
 ## Descrição
 
@@ -41,3 +39,10 @@ O projeto **inquilinos-backend** é uma aplicação backend desenvolvida para ge
     ```bash
     npm start
     ```
+
+
+
+## DOTENV
+MONGO_URI=
+
+JWT_SECRET=7NKC6l70YS6t
