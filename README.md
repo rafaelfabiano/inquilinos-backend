@@ -44,5 +44,4 @@ O projeto **inquilinos-backend** é uma aplicação backend desenvolvida para ge
 
 ## DOTENV
 MONGO_URI=
-
-JWT_SECRET=7NKC6l70YS6t
+JWT_SECRET=
